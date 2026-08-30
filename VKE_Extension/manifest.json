@@ -1,0 +1,43 @@
+{
+   "action": {
+      "default_icon": {
+         "128": "icons/icon128.png",
+         "16": "icons/icon16.png",
+         "48": "icons/icon48.png"
+      },
+      "default_popup": "popup.html"
+   },
+   "background": {
+      "service_worker": "background.js"
+   },
+   "content_scripts": [ {
+      "all_frames": false,
+      "js": [ "page-injector.js" ],
+      "matches": [ "https://youtube.com/*", "https://www.youtube.com/*", "https://m.youtube.com/*" ],
+      "run_at": "document_start"
+   }, {
+      "all_frames": true,
+      "css": [ "content.css" ],
+      "js": [ "constants.js", "runtime-ui.js", "utils.js", "content-modules/youtube-controller.js", "content/platforms/rutube-adapter.js", "content/platforms/vkvideo-adapter.js", "content/platforms/youtube-adapter.js", "content/platforms/youtube-runtime-controller.js", "content/platforms/get-platform-adapter.js", "content/platforms/detect-platform.js", "content/playback/active-cue-tracker.js", "content/playback/scroll-manager.js", "content/playback/timeupdate-controller.js", "content/transcript/transcript-state.js", "content/transcript/transcript-service.js", "content/transcript/transcript-fetch-controller.js", "content/transcript/transcript-export.js", "content/transcript/transcript-actions-controller.js", "content/translation/translation-controller.js", "content/paywall/entitlement-service.js", "content/paywall/paywall-controller.js", "content/summary/summary-controller.js", "content/ui/language-selector.js", "content/ui/theme-controller.js", "content/ui/full-summary-loader.js", "content/ui/panel-root.js", "content/ui/transcript-list.js", "content/ui/panel-controller.js", "content/ui/actions-toolbar.js", "content/ui/toast-view.js", "content/ui/paywall-view.js", "content/runtime/teardown-registry.js", "content/runtime/content-runtime.js", "content/runtime/session-manager.js", "content/runtime/navigation-controller.js", "content/runtime/runtime-listeners-controller.js", "content/runtime/session-lifecycle-controller.js", "content/runtime/fallback-factories.js", "content.js", "content/bootstrap.js", "content/index.js" ],
+      "matches": [ "https://rutube.ru/*", "https://*.rutube.ru/*", "https://vkvideo.ru/*", "https://*.vkvideo.ru/*", "https://youtube.com/*", "https://www.youtube.com/*", "https://m.youtube.com/*" ],
+      "run_at": "document_idle"
+   } ],
+   "default_locale": "ru",
+   "description": "__MSG_extDescriptionSeo__",
+   "host_permissions": [ "https://rutube.ru/*", "https://*.rutube.ru/*", "https://vkvideo.ru/*", "https://*.vkvideo.ru/*", "https://youtube.com/*", "https://www.youtube.com/*", "https://m.youtube.com/*", "https://*.implesol.com/*" ],
+   "icons": {
+      "128": "icons/icon128.png",
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx8W2Nge6SEveZlEZXLbqI88UcKwHNgMNI7xnjgTbQ2jLClPntGQK5tOAdBd2rCI/U+quLUAUlpM1qYN+dujAkg6GuTnEjElijGYm27qHKvAiMnnDH7i26CJ79kznzCT6u64+xgjTReJ6OZzGQm7zfPNxkFQ819+4xC0LgkG6oZfhovzuu9K/uF1bwON+/CPdqelUJ9eMQMduk9VxDm1DlYi0R4pirjD1iq3UiL9uK/GKSecU1fGTE7YX2EfPl4Q6wWSDf1kfoehHlJBeU6lQmVPF9MtPw7YTPdgvcBCR7SaQjRZqcDN6KtuFA5Lrfm4Oj0YYrG975vFt09uxAAVxPQIDAQAB",
+   "manifest_version": 3,
+   "name": "__MSG_extNameSeo__",
+   "permissions": [ "storage" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "3.4.0",
+   "web_accessible_resources": [ {
+      "matches": [ "https://rutube.ru/*", "https://*.rutube.ru/*", "https://vkvideo.ru/*", "https://*.vkvideo.ru/*", "https://youtube.com/*", "https://www.youtube.com/*", "https://m.youtube.com/*" ],
+      "resources": [ "icons/*", "youtube-page-bridge.js" ]
+   } ]
+}

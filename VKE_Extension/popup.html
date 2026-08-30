@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="popupTitle"></title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="popup">
+      <div class="popup-header">
+        <div class="popup-icon">
+          <img
+            class="popup-icon-image"
+            src="icons/icon128.png"
+            alt=""
+            width="40"
+            height="40"
+          />
+        </div>
+        <div class="popup-title">
+          <div class="popup-name" data-i18n="popupBrandName"></div>
+          <div class="popup-desc" data-i18n="popupSubtitle"></div>
+        </div>
+      </div>
+
+      <div id="view-main" class="view active">
+        <section class="popup-onboarding-card hidden" id="popup-onboarding">
+          <div class="popup-section-title" data-i18n="popupOnboardingLabel"></div>
+          <div class="popup-onboarding-title" data-i18n="popupOnboardingTitle"></div>
+          <div class="popup-onboarding-desc" data-i18n="popupOnboardingDesc"></div>
+          <button
+            class="popup-btn secondary popup-onboarding-btn"
+            id="btn-open-panel"
+            data-i18n="popupOnboardingOpenButton"
+          ></button>
+          <div
+            class="popup-onboarding-links hidden"
+            id="popup-onboarding-links"
+          >
+            <a href="https://www.youtube.com/" target="_blank" rel="noreferrer noopener">YouTube</a>
+            <a href="https://vkvideo.ru/" target="_blank" rel="noreferrer noopener">VK Video</a>
+            <a href="https://rutube.ru/video/" target="_blank" rel="noreferrer noopener">RuTube</a>
+          </div>
+          <div class="popup-onboarding-hint" data-i18n="popupOnboardingHint"></div>
+          <div
+            class="popup-onboarding-feedback hidden"
+            id="popup-onboarding-feedback"
+          ></div>
+        </section>
+
+        <div class="popup-status-card" id="popup-status-card">
+          <div
+            class="popup-status-title"
+            id="popup-status-title"
+            data-i18n="popupStatusFreeTitle"
+          ></div>
+          <div
+            class="popup-status-desc"
+            id="popup-status-desc"
+            data-i18n="popupStatusFreeDesc"
+          ></div>
+        </div>
+
+        <div class="popup-actions" id="free-actions">
+          <button class="popup-btn primary" id="btn-subscribe"></button>
+          <button
+            class="popup-btn secondary"
+            id="btn-restore"
+            data-i18n="paywallRestore"
+          ></button>
+        </div>
+
+        <div class="popup-history-stack hidden" id="popup-history-stack">
+          <section class="popup-history-section" id="popup-summary-history-section">
+            <div class="popup-history-header">
+              <div class="popup-section-title" data-i18n="popupSummaryHistoryTitle"></div>
+              <div class="popup-history-pagination" id="popup-summary-history-pagination">
+                <button
+                  class="popup-history-page-btn"
+                  id="popup-summary-prev"
+                  type="button"
+                  data-i18n="popupHistoryPrev"
+                ></button>
+                <span class="popup-history-page-indicator" id="popup-summary-page-indicator"></span>
+                <button
+                  class="popup-history-page-btn"
+                  id="popup-summary-next"
+                  type="button"
+                  data-i18n="popupHistoryNext"
+                ></button>
+              </div>
+            </div>
+            <div class="popup-history-list" id="popup-summary-history-list"></div>
+            <div
+              class="popup-history-empty hidden"
+              id="popup-summary-history-empty"
+              data-i18n="popupSummaryHistoryEmpty"
+            ></div>
+          </section>
+
+          <section
+            class="popup-history-section hidden"
+            id="popup-translation-history-section"
+          >
+            <div class="popup-history-header">
+              <div class="popup-section-title" data-i18n="popupTranslationHistoryTitle"></div>
+              <div class="popup-history-pagination" id="popup-translation-history-pagination">
+                <button
+                  class="popup-history-page-btn"
+                  id="popup-translation-prev"
+                  type="button"
+                  data-i18n="popupHistoryPrev"
+                ></button>
+                <span class="popup-history-page-indicator" id="popup-translation-page-indicator"></span>
+                <button
+                  class="popup-history-page-btn"
+                  id="popup-translation-next"
+                  type="button"
+                  data-i18n="popupHistoryNext"
+                ></button>
+              </div>
+            </div>
+            <div class="popup-history-list" id="popup-translation-history-list"></div>
+            <div
+              class="popup-history-empty hidden"
+              id="popup-translation-history-empty"
+              data-i18n="popupTranslationHistoryEmpty"
+            ></div>
+          </section>
+        </div>
+
+        <div class="popup-info" data-i18n="popupInfoText"></div>
+      </div>
+
+      <div id="view-buy" class="view">
+        <button class="back-btn" data-view="main" data-i18n="popupBack"></button>
+        <div
+          class="view-title"
+          id="buy-view-title"
+          data-i18n="popupBuyViewTitle"
+        ></div>
+        <div
+          class="view-subtitle"
+          id="buy-view-subtitle"
+          data-i18n="popupBuyViewSubtitle"
+        ></div>
+        <div id="buy-plan-selector" class="popup-plan-selector hidden"></div>
+        <input
+          type="email"
+          id="buy-email"
+          class="input"
+          data-i18n-placeholder="popupBuyEmailPlaceholder"
+        />
+        <div id="buy-consents"></div>
+        <button
+          id="btn-pay"
+          class="popup-btn primary"
+          data-i18n="popupBuySubmit"
+        ></button>
+        <div
+          class="popup-info popup-info-inline"
+          data-i18n="popupBuyAutoRenew"
+        ></div>
+      </div>
+
+      <div id="view-pending" class="view">
+        <div class="success-icon success-icon-pending">&#9203;</div>
+        <div
+          class="view-title view-title-center"
+          data-i18n="popupPendingTitle"
+        ></div>
+        <div
+          class="view-subtitle view-title-center"
+          data-i18n="popupPendingSubtitle"
+        ></div>
+        <button
+          id="btn-check-subscription"
+          class="popup-btn primary"
+          data-i18n="popupCheckPayment"
+        ></button>
+        <button class="popup-btn text" data-view="main" data-i18n="popupCancel"></button>
+      </div>
+
+      <div id="view-restore" class="view">
+        <button class="back-btn" data-view="main" data-i18n="popupBack"></button>
+        <div class="view-title" data-i18n="popupRestoreViewTitle"></div>
+        <div class="view-subtitle" data-i18n="popupRestoreViewSubtitle"></div>
+        <input
+          type="email"
+          id="restore-email"
+          class="input"
+          data-i18n-placeholder="restoreEmailPlaceholder"
+        />
+        <button
+          id="btn-check-license"
+          class="popup-btn primary"
+          data-i18n="popupRestoreCheck"
+        ></button>
+      </div>
+
+      <div id="view-success" class="view">
+        <div class="success-icon">&#10003;</div>
+        <div
+          class="view-title view-title-center"
+          data-i18n="popupSuccessTitle"
+        ></div>
+        <div
+          class="view-subtitle view-title-center"
+          data-i18n="popupSuccessSubtitlePro"
+        ></div>
+        <button
+          class="popup-btn primary"
+          data-view="main"
+          data-i18n="popupContinue"
+        ></button>
+      </div>
+
+      <div id="view-cancel" class="view">
+        <button class="back-btn" data-view="main" data-i18n="popupBack"></button>
+        <div class="success-icon success-icon-danger">&#10005;</div>
+        <div
+          class="view-title view-title-center"
+          data-i18n="popupCancelTitle"
+        ></div>
+        <div
+          class="view-subtitle view-title-center"
+          data-i18n="popupCancelDesc"
+        ></div>
+        <button
+          id="btn-confirm-cancel"
+          class="popup-btn danger"
+          data-i18n="popupCancelConfirm"
+        ></button>
+        <button
+          class="popup-btn text"
+          data-view="main"
+          data-i18n="popupCancelKeep"
+        ></button>
+      </div>
+
+      <div class="popup-footer">
+        <a
+          href="https://t.me/implesol_team"
+          target="_blank"
+          class="footer-link"
+          data-i18n="popupSupport"
+        ></a>
+        <span class="footer-sep hidden" id="cancel-sep">&middot;</span>
+        <a
+          class="footer-link cancel-link hidden"
+          id="btn-cancel-sub"
+          href="#"
+          data-i18n="popupCancelLink"
+        ></a>
+      </div>
+    </div>
+    <script src="constants.js"></script>
+    <script src="runtime-ui.js"></script>
+    <script src="popup/reactivation-view.js"></script>
+    <script src="popup/activity-view.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

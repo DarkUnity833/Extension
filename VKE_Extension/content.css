@@ -1,0 +1,1882 @@
+/* RuTube Transcript - Content Styles */
+
+/* Transcript Button - in controls panel */
+.rutube-transcript-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+  margin: 0 2px;
+}
+
+.rutube-transcript-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.rutube-transcript-btn:active {
+  transform: scale(0.95);
+}
+
+.rutube-transcript-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.rutube-transcript-btn.in-controls {
+  opacity: 1;
+}
+
+.rutube-transcript-btn.active {
+  color: #8b5cf6;
+}
+
+.rutube-transcript-btn.active:hover {
+  color: #a78bfa;
+}
+
+.rutube-transcript-btn.first-use-highlight {
+  color: #ffffff;
+  background: rgba(139, 92, 246, 0.18);
+  box-shadow:
+    0 0 0 0 rgba(139, 92, 246, 0.5),
+    inset 0 0 0 1px rgba(196, 181, 253, 0.45);
+  animation: transcript-first-use-pulse 1.6s ease-in-out 4;
+}
+
+.rutube-transcript-btn.disabled {
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+
+.rutube-transcript-btn.disabled:hover {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.rutube-transcript-btn.loading {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.rutube-transcript-btn.loading svg {
+  animation: transcript-pulse 1s ease-in-out infinite;
+}
+
+/* Floating button (fallback) */
+.rutube-transcript-btn.floating {
+  position: absolute;
+  bottom: 60px;
+  right: 16px;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+}
+
+.rutube-transcript-btn.floating.visible {
+  opacity: 1;
+}
+
+.rutube-transcript-btn.floating:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Transcript Panel */
+.rutube-transcript-panel {
+  --panel-bg: #0a0a0a;
+  --panel-surface: #141414;
+  --panel-surface-strong: #1a1a1a;
+  --panel-border: #1f1f1f;
+  --panel-text: rgba(255, 255, 255, 0.78);
+  --panel-text-muted: rgba(255, 255, 255, 0.54);
+  --panel-title: #ffffff;
+  --panel-hover: #1a1a1a;
+  --panel-active-bg: rgba(139, 92, 246, 0.15);
+  --panel-active-border: #8b5cf6;
+  --panel-footer-border: #1f1f1f;
+  --panel-action-border: transparent;
+  --panel-preview-bg:
+    radial-gradient(circle at top left, rgba(139, 92, 246, 0.14), transparent 58%),
+    linear-gradient(180deg, rgba(21, 21, 27, 0.96), rgba(15, 15, 18, 0.96));
+  --panel-preview-border: rgba(139, 92, 246, 0.22);
+  --panel-progress-track: rgba(255, 255, 255, 0.08);
+  --panel-progress-fill-start: #8b5cf6;
+  --panel-progress-fill-end: #c4b5fd;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 360px;
+  height: 100vh;
+  background: var(--panel-bg);
+  border-left: 1px solid var(--panel-border);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transform: translateX(100%);
+  transition: transform 0.2s ease;
+}
+
+.rutube-transcript-panel.open {
+  transform: translateX(0);
+}
+
+.rutube-transcript-panel.theme-light {
+  --panel-bg: #fafafe;
+  --panel-surface: #ffffff;
+  --panel-surface-strong: #f3f4fb;
+  --panel-border: rgba(99, 102, 241, 0.14);
+  --panel-text: rgba(15, 23, 42, 0.9);
+  --panel-text-muted: rgba(15, 23, 42, 0.58);
+  --panel-title: #111827;
+  --panel-hover: #eef1fb;
+  --panel-active-bg: rgba(139, 92, 246, 0.1);
+  --panel-active-border: #8b5cf6;
+  --panel-footer-border: rgba(99, 102, 241, 0.12);
+  --panel-action-border: rgba(99, 102, 241, 0.14);
+  --panel-preview-bg:
+    radial-gradient(circle at top left, rgba(139, 92, 246, 0.1), transparent 56%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 245, 255, 0.98));
+  --panel-preview-border: rgba(139, 92, 246, 0.2);
+  --panel-progress-track: rgba(17, 24, 39, 0.08);
+  box-shadow: -12px 0 32px rgba(15, 23, 42, 0.08);
+}
+
+/* Panel Header */
+.transcript-panel-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--panel-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.transcript-panel-title {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  color: var(--panel-title);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.transcript-panel-title-text {
+  display: block;
+}
+
+.transcript-panel-header-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.transcript-panel-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.transcript-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--panel-surface);
+  border: 1px solid var(--panel-action-border);
+  color: var(--panel-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.transcript-action-btn:hover {
+  background: var(--panel-surface-strong);
+  color: var(--panel-text);
+}
+
+.transcript-action-btn.active {
+  background: rgba(139, 92, 246, 0.14);
+  color: var(--panel-title);
+  border-color: rgba(139, 92, 246, 0.24);
+}
+
+/* Action Buttons */
+.transcript-actions {
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid var(--panel-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.transcript-buttons {
+  padding: 10px 16px 4px;
+  display: flex;
+  gap: 6px;
+}
+
+.transcript-buttons.secondary {
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.transcript-actions .transcript-buttons {
+  padding: 0;
+  border-bottom: none;
+}
+
+.transcript-btn {
+  flex: 1 1 0;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background: var(--panel-surface-strong);
+  border: none;
+  color: var(--panel-text);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.transcript-btn:hover {
+  background: var(--panel-surface);
+  color: var(--panel-title);
+}
+
+.transcript-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.transcript-btn.loading {
+  cursor: progress;
+}
+
+.transcript-btn.loading svg {
+  animation: transcript-pulse 1s ease-in-out infinite;
+}
+
+.transcript-btn.transcript-btn-icon {
+  flex: 0 0 40px;
+  width: 40px;
+  padding: 0;
+}
+
+.transcript-btn.transcript-btn-primary {
+  flex: 1.35 1 0;
+  min-width: 108px;
+}
+
+.transcript-btn.transcript-btn-compact {
+  flex: 0.8 1 0;
+  min-width: 64px;
+}
+
+.transcript-btn.transcript-btn-archive {
+  width: 100%;
+  justify-content: center;
+  background: rgba(139, 92, 246, 0.16);
+  border: 1px solid rgba(139, 92, 246, 0.24);
+  color: var(--panel-title);
+}
+
+.transcript-btn.transcript-btn-archive:hover {
+  background: rgba(139, 92, 246, 0.22);
+  color: var(--panel-title);
+}
+
+.transcript-btn.transcript-btn-archive.saved,
+.transcript-btn.transcript-btn-archive.saved:hover {
+  background: rgba(34, 197, 94, 0.16);
+  border-color: rgba(34, 197, 94, 0.28);
+  color: #bbf7d0;
+  opacity: 1;
+}
+
+.transcript-btn.transcript-btn-archive.pairing,
+.transcript-btn.transcript-btn-archive.pairing:hover {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.26);
+  color: #fde68a;
+  opacity: 1;
+}
+
+.rutube-transcript-panel.theme-light .transcript-btn.transcript-btn-archive {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.2);
+  color: #6d28d9;
+}
+
+.rutube-transcript-panel.theme-light .transcript-btn.transcript-btn-archive:hover {
+  background: rgba(139, 92, 246, 0.16);
+  color: #5b21b6;
+}
+
+.rutube-transcript-panel.theme-light .transcript-btn.transcript-btn-archive.saved,
+.rutube-transcript-panel.theme-light .transcript-btn.transcript-btn-archive.saved:hover {
+  background: rgba(22, 163, 74, 0.12);
+  border-color: rgba(22, 163, 74, 0.24);
+  color: #15803d;
+}
+
+.rutube-transcript-panel.theme-light .transcript-btn.transcript-btn-archive.pairing,
+.rutube-transcript-panel.theme-light .transcript-btn.transcript-btn-archive.pairing:hover {
+  background: rgba(217, 119, 6, 0.12);
+  border-color: rgba(217, 119, 6, 0.24);
+  color: #b45309;
+}
+
+.transcript-btn-shell {
+  position: relative;
+  display: flex;
+  min-width: 0;
+}
+
+.transcript-btn-shell.transcript-btn-shell-compact {
+  flex: 0.8 1 0;
+  min-width: 64px;
+}
+
+.transcript-btn-shell > .transcript-btn {
+  width: 100%;
+}
+
+.transcript-btn.transcript-btn-icon.active {
+  background: rgba(139, 92, 246, 0.18);
+  color: #ddd6fe;
+  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.28);
+}
+
+.rutube-transcript-panel.theme-light .transcript-btn.transcript-btn-icon.active {
+  background: rgba(139, 92, 246, 0.16);
+  color: #7c3aed;
+  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.3);
+}
+
+.rutube-transcript-panel.theme-light .transcript-btn.transcript-btn-icon.active:hover {
+  background: rgba(139, 92, 246, 0.2);
+  color: #6d28d9;
+}
+
+/* AI button — full width, prominent */
+.transcript-btn.pro {
+  background: var(--panel-surface-strong);
+  border: 1px solid var(--panel-action-border);
+  color: var(--panel-text);
+}
+
+.transcript-btn.pro:hover {
+  background: var(--panel-surface);
+  color: var(--panel-title);
+}
+
+.transcript-btn.pro.unlocked {
+  background: var(--panel-surface-strong);
+  border: none;
+  color: var(--panel-text);
+}
+
+.transcript-btn.pro.unlocked:hover {
+  background: var(--panel-surface);
+  color: var(--panel-title);
+}
+
+.transcript-language-slot {
+  display: flex;
+  justify-content: flex-start;
+  flex: 0 1 auto;
+  min-width: 0;
+  margin-right: auto;
+}
+
+.transcript-language-control {
+  position: relative;
+  width: 100%;
+  max-width: 156px;
+}
+
+.transcript-language-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+  width: 100%;
+  padding: 3px;
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  background: var(--panel-surface);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.transcript-language-chip {
+  min-width: 32px;
+  height: 28px;
+  padding: 0 7px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--panel-text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.transcript-language-chip:hover {
+  color: var(--panel-title);
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.transcript-language-chip.active {
+  background: rgba(139, 92, 246, 0.18);
+  color: var(--panel-title);
+}
+
+.transcript-language-control-badge {
+  position: absolute;
+  top: -6px;
+  right: 10px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 14px;
+  padding: 0 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 92, 246, 0.26);
+  background:
+    linear-gradient(180deg, rgba(33, 25, 49, 0.98), rgba(18, 14, 27, 0.98));
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #d8b4fe;
+  pointer-events: none;
+}
+
+.rutube-transcript-panel.theme-light .transcript-language-control-badge {
+  border-color: rgba(139, 92, 246, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 235, 255, 0.98));
+  box-shadow:
+    0 4px 10px rgba(99, 102, 241, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  color: #7c3aed;
+}
+
+.transcript-btn-pro-badge {
+  display: none;
+  right: 8px;
+}
+
+#btn-download-srt.pro + .transcript-btn-pro-badge {
+  display: inline-flex;
+}
+
+.transcript-language-chip[data-language="original"] {
+  min-width: 44px;
+}
+
+.transcript-language-control.loading .transcript-language-switch {
+  box-shadow:
+    inset 0 0 0 1px rgba(139, 92, 246, 0.12),
+    0 0 0 1px rgba(139, 92, 246, 0.08);
+}
+
+.transcript-language-chip.loading {
+  animation: transcript-chip-pulse 1s ease-in-out infinite;
+  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.22);
+}
+
+.transcript-summary-preview {
+  margin: 16px 16px 0;
+  padding: 14px 14px 12px;
+  border: 1px solid var(--panel-preview-border);
+  border-radius: 14px;
+  background: var(--panel-preview-bg);
+}
+
+.summary-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.summary-preview-title {
+  color: var(--panel-title);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.summary-preview-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary-preview-text {
+  display: block;
+  position: relative;
+  color: var(--panel-text);
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: normal;
+  max-height: calc(1.55em * 4.6);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 74%,
+    rgba(0, 0, 0, 0.82) 88%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 74%,
+    rgba(0, 0, 0, 0.82) 88%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.summary-preview-text.muted,
+.summary-preview-meta {
+  color: var(--panel-text-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.summary-preview-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-preview-line {
+  display: block;
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.08)
+  );
+  background-size: 200% 100%;
+  animation: summary-shimmer 1.3s linear infinite;
+}
+
+.summary-preview-line.short {
+  width: 72%;
+}
+
+.summary-preview-meter-body {
+  position: relative;
+  overflow: hidden;
+  gap: 3px;
+}
+
+.summary-preview-locked-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0;
+  filter: blur(2.5px);
+  opacity: 0.44;
+}
+
+.summary-preview-locked-line {
+  display: block;
+  width: 100%;
+  height: 7px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(221, 214, 254, 0.22),
+    rgba(167, 139, 250, 0.38),
+    rgba(221, 214, 254, 0.18)
+  );
+}
+
+.summary-preview-locked-line.short {
+  display: none;
+}
+
+.summary-preview-locked-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.summary-preview-locked-title {
+  color: var(--panel-title);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.summary-preview-locked-body {
+  color: var(--panel-text);
+  display: -webkit-box;
+  font-size: 12px;
+  line-height: 1.35;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.summary-preview-meter-body .summary-preview-cta {
+  min-height: 34px;
+}
+
+.summary-preview-cta {
+  width: 100%;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: 10px;
+  background: rgba(139, 92, 246, 0.14);
+  color: #ddd6fe;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.summary-preview-cta:hover {
+  background: rgba(139, 92, 246, 0.2);
+  color: white;
+}
+
+.rutube-transcript-panel.theme-light .summary-preview-cta {
+  border-color: transparent;
+  background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(139, 92, 246, 0.16);
+}
+
+.rutube-transcript-panel.theme-light .summary-preview-cta:hover {
+  background: linear-gradient(180deg, #b595ff 0%, #9568f7 100%);
+}
+
+.summary-preview-cta.retry {
+  background: transparent;
+  color: var(--panel-text);
+  border-color: var(--panel-border);
+}
+
+.summary-preview-cta.retry:hover {
+  background: var(--panel-surface);
+}
+
+/* Transcript Content */
+.transcript-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.transcript-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 20px;
+}
+
+.transcript-loading {
+  text-align: center;
+  color: var(--panel-text-muted);
+  font-size: 13px;
+  padding: 32px 16px;
+}
+
+.transcript-live-note {
+  margin: 12px 16px 4px;
+  padding: 10px 12px;
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  border-radius: 10px;
+  background: rgba(139, 92, 246, 0.08);
+  color: #c4b5fd;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.transcript-partial-note {
+  margin: 12px 16px 8px;
+  padding: 10px 12px;
+  border: 1px solid rgba(245, 158, 11, 0.34);
+  border-radius: 10px;
+  background: rgba(245, 158, 11, 0.11);
+  color: #fbbf24;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.transcript-translation-status {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px 12px;
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at top left, rgba(139, 92, 246, 0.12), transparent 60%),
+    var(--panel-surface);
+}
+
+.transcript-translation-status-copy {
+  min-width: 0;
+}
+
+.transcript-translation-status-title {
+  color: var(--panel-title);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.transcript-translation-status-hint {
+  margin-top: 4px;
+  color: var(--panel-text-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.transcript-translation-status-meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--panel-text-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.transcript-translation-status-lang {
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.14);
+  color: #c4b5fd;
+  letter-spacing: 0.03em;
+}
+
+.transcript-translation-status-progress {
+  color: var(--panel-title);
+}
+
+.transcript-translation-status-track {
+  grid-column: 1 / -1;
+  height: 7px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--panel-progress-track);
+}
+
+.transcript-translation-status-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--panel-progress-fill-start) 0%,
+    var(--panel-progress-fill-end) 100%
+  );
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.24);
+  transition: width 0.2s ease;
+}
+
+@keyframes transcript-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes transcript-first-use-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 0 rgba(139, 92, 246, 0.48),
+      inset 0 0 0 1px rgba(196, 181, 253, 0.42);
+  }
+  35% {
+    transform: scale(1.08);
+    box-shadow:
+      0 0 0 8px rgba(139, 92, 246, 0.16),
+      inset 0 0 0 1px rgba(221, 214, 254, 0.68);
+  }
+  70% {
+    transform: scale(1.02);
+    box-shadow:
+      0 0 0 14px rgba(139, 92, 246, 0),
+      inset 0 0 0 1px rgba(196, 181, 253, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 0 rgba(139, 92, 246, 0),
+      inset 0 0 0 1px rgba(196, 181, 253, 0.22);
+  }
+}
+
+@keyframes transcript-chip-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.transcript-empty {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--panel-text-muted);
+}
+
+.transcript-empty svg {
+  color: var(--panel-text-muted);
+}
+
+.transcript-empty-title {
+  font-size: 15px;
+  color: var(--panel-title);
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.transcript-empty-desc {
+  font-size: 13px;
+  color: var(--panel-text-muted);
+}
+
+.transcript-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-bottom: 4px;
+}
+
+.transcript-item:hover {
+  background: var(--panel-hover);
+}
+
+.transcript-item.active {
+  background: var(--panel-active-bg);
+  border-left: 2px solid var(--panel-active-border);
+}
+
+.transcript-time {
+  font-size: 11px;
+  color: #8b5cf6;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.transcript-text {
+  font-size: 14px;
+  color: var(--panel-text);
+  line-height: 1.5;
+}
+
+.rutube-transcript-panel.summary-mode .transcript-summary-preview {
+  display: none !important;
+}
+
+.summary-full-view {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px 16px;
+}
+
+.summary-full-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.summary-back-btn {
+  width: fit-content;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--panel-text-muted);
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.summary-back-btn:hover {
+  color: var(--panel-title);
+}
+
+.summary-full-title {
+  color: var(--panel-title);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.summary-full-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.summary-full-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.summary-full-loading {
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary-full-loader {
+  --summary-loader-progress: 12;
+  width: 100%;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin: auto;
+  padding: 20px 8px;
+}
+
+.summary-full-loader-visual {
+  position: relative;
+  width: 108px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary-full-loader-halo,
+.summary-full-loader-ring,
+.summary-full-loader-dot {
+  position: absolute;
+}
+
+.summary-full-loader-halo {
+  inset: 4px 10px 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 50% 48%,
+      rgba(196, 181, 253, 0.2),
+      rgba(139, 92, 246, 0.08) 55%,
+      rgba(139, 92, 246, 0) 76%
+    ),
+    radial-gradient(
+      circle at 50% 52%,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0) 72%
+    );
+  filter: blur(6px);
+  animation: summary-loader-halo 2.2s ease-in-out infinite;
+}
+
+.summary-full-loader-ring {
+  inset: 8px;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(139, 92, 246, 0.12),
+      rgba(196, 181, 253, 0.92) calc(var(--summary-loader-progress) * 1%),
+      rgba(139, 92, 246, 0.12)
+    );
+  -webkit-mask:
+    radial-gradient(circle at center, transparent 0 39px, #000 40px 100%);
+  mask:
+    radial-gradient(circle at center, transparent 0 39px, #000 40px 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+.summary-full-loader-dot {
+  top: 50%;
+  left: calc(10% + (var(--summary-loader-progress) * 0.8%));
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.98),
+    rgba(229, 218, 255, 0.92) 45%,
+    rgba(139, 92, 246, 0.65) 100%
+  );
+  box-shadow:
+    0 0 0 4px rgba(196, 181, 253, 0.08),
+    0 0 18px rgba(196, 181, 253, 0.78);
+  transition: left 0.18s ease;
+}
+
+.summary-full-loader-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+
+.summary-full-loader-label {
+  color: var(--panel-title);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.summary-full-loader-stage {
+  min-height: 18px;
+  color: var(--panel-text-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.summary-full-progress {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-full-progress-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--panel-text-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.summary-full-progress-value {
+  color: #ddd6fe;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.summary-full-progress-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--panel-progress-track);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.summary-full-progress-fill {
+  display: block;
+  width: 12%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--panel-progress-fill-start) 0%,
+    var(--panel-progress-fill-end) 100%
+  );
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.32);
+  transition: width 0.18s ease;
+}
+
+.summary-full-text {
+  color: var(--panel-text);
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: normal;
+}
+
+.summary-full-empty {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.summary-full-empty {
+  align-items: center;
+  text-align: center;
+}
+
+.summary-full-empty-text {
+  color: var(--panel-text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Footer */
+.transcript-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--panel-footer-border);
+  font-size: 11px;
+  color: var(--panel-text-muted);
+  text-align: center;
+}
+
+/* Toast */
+.rutube-transcript-toast {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 9999999 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 14px 20px !important;
+  background: #1a1a1a !important;
+  border-radius: 10px !important;
+  color: white !important;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 14px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  animation: slideIn 0.3s ease !important;
+  border: none !important;
+  margin: 0 !important;
+  width: auto !important;
+  max-width: 360px !important;
+}
+
+.rutube-transcript-toast.success {
+  border-left: 4px solid #22c55e !important;
+}
+.rutube-transcript-toast.error {
+  border-left: 4px solid #ef4444 !important;
+  background: #1a1a1a !important;
+}
+.rutube-transcript-toast.warning {
+  border-left: 4px solid #f59e0b !important;
+}
+
+.rutube-transcript-toast .toast-icon {
+  font-size: 20px !important;
+}
+.rutube-transcript-toast .toast-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+.rutube-transcript-toast .toast-title {
+  font-weight: 600 !important;
+  color: white !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.rutube-transcript-toast .toast-subtitle {
+  font-size: 12px !important;
+  opacity: 0.7 !important;
+  color: white !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes summary-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes transcript-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes summary-loader-halo {
+  0%,
+  100% {
+    transform: scale(0.98);
+    opacity: 0.78;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+}
+
+.ai-spinner {
+  animation: spin 1.5s linear infinite;
+}
+
+.summary-preview-nudge {
+  position: fixed;
+  z-index: 100000;
+  padding: 9px 12px;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: 999px;
+  background: rgba(12, 12, 16, 0.95);
+  color: #ede9fe;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+}
+
+.summary-preview-nudge::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 10px;
+  height: 10px;
+  background: rgba(12, 12, 16, 0.95);
+  border-right: 1px solid rgba(139, 92, 246, 0.35);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.35);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Paywall Modal */
+.rutube-transcript-paywall {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(8px, 2vh, 16px) 12px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+  box-sizing: border-box;
+}
+
+.rutube-transcript-paywall .paywall-card {
+  position: relative;
+  width: min(372px, calc(100vw - 28px));
+  padding: 18px 18px 16px;
+  margin: 0;
+  background: #0a0a0a;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  text-align: left;
+  color: white;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+}
+
+.rutube-transcript-paywall .paywall-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.rutube-transcript-paywall .paywall-close:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.rutube-transcript-paywall .paywall-title {
+  max-width: 292px;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.24;
+  margin: 0 0 8px;
+}
+
+.rutube-transcript-paywall .paywall-subtitle {
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.58);
+  margin: 0 0 14px;
+}
+
+.rutube-transcript-paywall .paywall-plan-selector {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.rutube-transcript-paywall .paywall-plan-card {
+  position: relative;
+  width: 100%;
+  padding: 14px 44px 14px 16px;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  background: #111111;
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.rutube-transcript-paywall .paywall-plan-card:hover {
+  border-color: rgba(139, 92, 246, 0.44);
+}
+
+.rutube-transcript-paywall .paywall-plan-card.active {
+  border-color: rgba(139, 92, 246, 0.72);
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.16), #111111);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+.rutube-transcript-paywall .paywall-plan-copy {
+  display: grid;
+  gap: 4px;
+}
+
+.rutube-transcript-paywall .paywall-plan-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.rutube-transcript-paywall .paywall-plan-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rutube-transcript-paywall .paywall-plan-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.05;
+}
+
+.rutube-transcript-paywall .paywall-plan-period {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.54);
+}
+
+.rutube-transcript-paywall .paywall-plan-secondary-price {
+  margin-top: -1px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.rutube-transcript-paywall .paywall-plan-radio {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  margin-top: -9px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+}
+
+.rutube-transcript-paywall .paywall-plan-card.active .paywall-plan-radio {
+  border-color: rgba(139, 92, 246, 0.92);
+  box-shadow: inset 0 0 0 4px #8b5cf6;
+}
+
+.rutube-transcript-paywall .paywall-plan-badge {
+  position: absolute;
+  top: -1px;
+  right: 36px;
+  padding: 4px 8px;
+  border-radius: 0 13px 0 11px;
+  background: #ffffff;
+  color: #111111;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.rutube-transcript-paywall .paywall-features-label {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 6px;
+}
+
+.rutube-transcript-paywall .paywall-features {
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+.rutube-transcript-paywall .paywall-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.rutube-transcript-paywall .paywall-feature.highlight {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 500 !important;
+}
+
+.rutube-transcript-paywall .paywall-feature.dim {
+  color: rgba(255, 255, 255, 0.35) !important;
+  font-size: 13px !important;
+}
+
+.rutube-transcript-paywall .paywall-price-box {
+  background: #141414;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 11px 12px;
+  margin-bottom: 10px;
+}
+
+.rutube-transcript-paywall .paywall-price {
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.rutube-transcript-paywall .paywall-price-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 6px;
+}
+
+.rutube-transcript-paywall .paywall-input {
+  width: 100%;
+  padding: 11px 14px;
+  margin-bottom: 10px;
+  background: #141414;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  color: white;
+  font-size: 13px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.rutube-transcript-paywall .paywall-input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+}
+
+.rutube-transcript-paywall .paywall-input.paywall-input-invalid {
+  border-color: #ef4444;
+}
+
+.rutube-transcript-paywall .paywall-consents {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rutube-transcript-paywall .paywall-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 11px;
+  line-height: 1.38;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.rutube-transcript-paywall .paywall-consent input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  flex: 0 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 6px;
+  background: linear-gradient(180deg, #191919, #111111);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  position: relative;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.rutube-transcript-paywall .paywall-consent input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  opacity: 0;
+  transform: rotate(45deg) scale(0.85);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.rutube-transcript-paywall
+  .paywall-consent
+  input[type="checkbox"]:checked {
+  border-color: rgba(167, 139, 250, 0.95);
+  background: linear-gradient(180deg, #9f6bff, #7c3aed);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.16);
+}
+
+.rutube-transcript-paywall
+  .paywall-consent
+  input[type="checkbox"]:checked::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+.rutube-transcript-paywall
+  .paywall-consent
+  input[type="checkbox"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+.rutube-transcript-paywall .paywall-consent.paywall-consent-invalid {
+  color: #fca5a5;
+}
+
+.rutube-transcript-paywall .paywall-consent-text {
+  display: inline;
+}
+
+.rutube-transcript-paywall .paywall-consent-link {
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: underline;
+  text-decoration-color: rgba(139, 92, 246, 0.65);
+}
+
+.rutube-transcript-paywall .paywall-consent-link:hover {
+  color: white;
+}
+
+.rutube-transcript-paywall .paywall-btn {
+  width: 100%;
+  padding: 13px 16px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.rutube-transcript-paywall .paywall-btn.primary {
+  background: linear-gradient(180deg, #8b5cf6, #7c3aed);
+  color: white;
+}
+
+.rutube-transcript-paywall .paywall-btn.primary:hover {
+  background: linear-gradient(180deg, #9568f7, #8b46f0);
+}
+
+.rutube-transcript-paywall .paywall-btn.primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.rutube-transcript-paywall .paywall-step {
+  display: grid;
+  gap: 8px;
+}
+
+.rutube-transcript-paywall .paywall-link-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(139, 92, 246, 0.46);
+  text-underline-offset: 3px;
+}
+
+.rutube-transcript-paywall .paywall-link-btn:hover {
+  color: #ffffff;
+  text-decoration-color: rgba(139, 92, 246, 0.78);
+}
+
+.rutube-transcript-paywall .paywall-footer {
+  display: none;
+  font-size: 11px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 8px;
+  text-align: center;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open {
+  width: min(372px, calc(100vw - 28px));
+  padding: 16px 16px 14px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-title {
+  font-size: 15px;
+  margin-bottom: 6px;
+  max-width: 272px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-subtitle {
+  display: none;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-plan-selector {
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-plan-card {
+  padding: 12px 40px 12px 14px;
+  border-radius: 12px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-plan-price {
+  font-size: 18px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-plan-badge {
+  right: 32px;
+  font-size: 9px;
+}
+
+.rutube-transcript-paywall
+  .paywall-card.checkout-open
+  .paywall-features-label,
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-features {
+  display: none;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-price-box {
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-price {
+  font-size: 19px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-price-label {
+  font-size: 11px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-input {
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-consents {
+  gap: 7px;
+  margin: 4px 0 10px;
+  padding: 9px 10px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-consent {
+  gap: 8px;
+  font-size: 10px;
+  line-height: 1.32;
+}
+
+.rutube-transcript-paywall
+  .paywall-card.checkout-open
+  .paywall-consent
+  input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  border-radius: 5px;
+}
+
+.rutube-transcript-paywall
+  .paywall-card.checkout-open
+  .paywall-consent
+  input[type="checkbox"]::after {
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-btn {
+  padding: 11px 14px;
+  font-size: 14px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-link-btn {
+  font-size: 12px;
+}
+
+.rutube-transcript-paywall .paywall-card.checkout-open .paywall-footer {
+  display: block;
+  margin-top: 6px;
+  font-size: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scrollbar */
+.transcript-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.transcript-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.transcript-content::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+
+.transcript-content::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+/* Hidden utility */
+.hidden {
+  display: none !important;
+}
