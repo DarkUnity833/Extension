@@ -1,9 +1,0 @@
-{
-  "version": "V72",
-  "changes": [
-    "Ambient Light is now completely disabled on vk.ru/vk.com; the script exits before injecting styles or modifying DOM.",
-    "Added separate side/top/bottom fill opacity control (0–100%).",
-    "Added separate side/top/bottom fill saturation/colorfulness control (0–250%).",
-    "Existing Ambient Light defaults remain unchanged; new fill controls default to the previous bar opacity/saturation values."
-  ]
-}

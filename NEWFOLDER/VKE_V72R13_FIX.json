@@ -1,9 +1,0 @@
-{
-  "version": "7.2.41",
-  "fixes": [
-    "Fixed clip Ambient Light floating control so it no longer participates in page layout and shifts/overlaps clip cards.",
-    "Fixed VK Video transcript loading bug caused by the previous delayed fallback path.",
-    "Transcript loader now mirrors the GitHub VK TextTrack flow more closely: exact active video first, hidden track activation, cue polling, then immediate <track src> fallback.",
-    "Main player is prioritized over recommendation/clip videos on normal VK Video pages."
-  ]
-}

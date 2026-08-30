@@ -1,9 +1,0 @@
-{
-  "version": "72r17",
-  "changes": [
-    "Independent VK Video transcript bootstrap",
-    "Detect main vk-video-player video without viewport visibility filter",
-    "Retry TextTrack loading every 500ms until track/cues are available",
-    "Protect fixed VK Video header from player/ambient z-index overlap"
-  ]
-}
