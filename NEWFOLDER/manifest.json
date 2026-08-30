@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "VK Enhanced",
-  "version": "7.2.41",
+  "version": "7.2.42",
   "description": "Удалённые сообщения, бомбочки, история редактирования, нечиталка, неписалка, оффлайн, VK media downloader",
   "permissions": [
     "activeTab",
@@ -214,9 +214,24 @@
         "clp/blob_bridge.js",
         "clp/media_ui.js",
         "clp/attachments_download.js",
-        "clp/stories_download.js"
+        "clp/stories_downloads.js"
       ],
       "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*",
+        "https://vkvideo.ru/*",
+        "https://*.vkvideo.ru/*"
+      ],
+      "js": [
+        "clp/transcript_search_ui.js"
+      ],
+      "run_at": "document_end",
+      "world": "MAIN"
     }
   ],
   "action": {
@@ -258,5 +273,5 @@
     "48": "icon.png",
     "128": "icon.png"
   },
-  "version_name": "VKE 7.2.41 — transcript search jump -1s, qoe removal, VK ad layer suppression"
+  "version_name": "VKE 7.2.42 — transcript search field"
 }
