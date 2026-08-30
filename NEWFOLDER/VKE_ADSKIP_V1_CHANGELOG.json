@@ -1,0 +1,13 @@
+{
+  "version": "VKE_ADSKIP_V1",
+  "based_on": "VK AD SKIP behavior/API observed in current VKE source",
+  "changes": [
+    "Keeps VK AD SKIP API integration at https://vkadskip-api.star-tech.dev",
+    "Supports intro, sponsor/creator ad, self-promotion and credits segment categories",
+    "Uses category colors on the player timeline",
+    "Autoskip merges adjacent enabled segments within 150 ms",
+    "Non-skippable/disabled categories act as barriers, matching the reference behavior",
+    "Runner checks playback every 80 ms for faster response",
+    "Preserves existing VKE localStorage settings model and player button"
+  ]
+}

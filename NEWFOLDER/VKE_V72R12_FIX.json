@@ -1,0 +1,11 @@
+{
+  "version": "72r12",
+  "changes": [
+    "Clip Ambient no longer participates in VK flex layout; settings button is fixed overlay and does not shift carousel.",
+    "Clip Ambient geometry is derived from actual video edges, never the 800px clip card.",
+    "Clip Ambient panel hides incompatible letterbox-fill setting and bar controls.",
+    "VK transcript search now prioritizes the main video, retries longer, activates disabled tracks temporarily, and also fetches direct <track src> resources.",
+    "Removed the duplicate transcript_search runtime from the manifest to avoid competing active-video state.",
+    "Bridge exits quietly after extension context invalidation.
+  ]
+}

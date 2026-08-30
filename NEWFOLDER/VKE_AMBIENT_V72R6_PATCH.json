@@ -1,0 +1,9 @@
+{
+  "version": "72r6",
+  "changes": [
+    "Force fill-video mode directly on the active <video> element with object-fit: cover, including Shadow DOM players.",
+    "Hide/disable bar transparency and bar saturation controls while fill-video mode is enabled.",
+    "Immediately remove the bar layer when fill-video mode is enabled."
+  ],
+  "ad_container_removal": "Remove .ads-container and [data-testid=\"ad-container\"] on vkvideo.ru, both by CSS and MutationObserver; strict host scope."
+}

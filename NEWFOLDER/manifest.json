@@ -1,0 +1,262 @@
+{
+  "manifest_version": 3,
+  "name": "VK Enhanced",
+  "version": "7.2.41",
+  "description": "Удалённые сообщения, бомбочки, история редактирования, нечиталка, неписалка, оффлайн, VK media downloader",
+  "permissions": [
+    "activeTab",
+    "alarms",
+    "storage",
+    "tabs",
+    "windows",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://vk.com/*",
+    "https://vk.ru/*",
+    "https://*.vk.com/*",
+    "https://*.vk.ru/*",
+    "https://api.vk.com/*",
+    "https://oauth.vk.com/*",
+    "https://lrclib.net/*",
+    "https://genius.com/*",
+    "https://*.genius.com/*",
+    "https://search.azlyrics.com/*",
+    "https://www.azlyrics.com/*",
+    "https://*.musixmatch.com/*",
+    "https://www.musixmatch.com/*",
+    "https://lyricsfreak.com/*",
+    "https://*.lyricsfreak.com/*",
+    "https://muzexo.com/*",
+    "https://*.muzexo.com/*",
+    "https://duckduckgo.com/*",
+    "https://*.duckduckgo.com/*",
+    "https://api.allorigins.win/*",
+    "https://api.codetabs.com/*",
+    "https://vkvideo.ru/*",
+    "https://*.vkvideo.ru/*",
+    "https://*.vkuser.net/*",
+    "https://*.okcdn.ru/*",
+    "https://*.vkvd*.okcdn.ru/*",
+    "https://*.vk-cdn.net/*",
+    "https://*.userapi.com/*",
+    "https://api.vk.ru/*",
+    "https://login.vk.com/*",
+    "https://login.vk.ru/*",
+    "https://vkadskip-api.star-tech.dev/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*"
+      ],
+      "js": [
+        "lyrics/injected.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*"
+      ],
+      "js": [
+        "styles/2.js",
+        "message_state_guard.js",
+        "content.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*"
+      ],
+      "js": [
+        "styles/1.js",
+        "content-bridge.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*"
+      ],
+      "js": [
+        "deleted_edited_ui.js"
+      ],
+      "run_at": "document_end",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*"
+      ],
+      "js": [
+        "notifications/popup_notify.js",
+        "notifications/watch_notifications.js",
+        "notifications/chat_watch_rules.js"
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*"
+      ],
+      "js": [
+        "lyrics/parsers.js"
+      ],
+      "css": [
+        "lyrics/lyrics.css"
+      ],
+      "run_at": "document_end",
+      "world": "ISOLATED"
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*"
+      ],
+      "js": [
+        "modules/hls.min.js",
+        "modules/jszip.js",
+        "modules/jszip.min.js",
+        "modules/lame.min.js",
+        "lyrics/downloader.js",
+        "lyrics/album_downloader.js"
+      ],
+      "run_at": "document_end",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*"
+      ],
+      "js": [
+        "lyrics/player.js"
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*",
+        "https://vkvideo.ru/*",
+        "https://*.vkvideo.ru/*"
+      ],
+      "js": [
+        "clp/segment_bridge.js"
+      ],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*",
+        "https://vkvideo.ru/*",
+        "https://*.vkvideo.ru/*"
+      ],
+      "js": [
+        "clp/ambient_light.js",
+        "clp/segment_skip.js",
+        "clp/video_inject.js",
+        "clp/media_core.js",
+        "clp/messenger_media_inject.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*",
+        "https://vkvideo.ru/*",
+        "https://*.vkvideo.ru/*"
+      ],
+      "js": [
+        "clp/progress_helper.js",
+        "clp/blob_bridge.js",
+        "clp/media_ui.js",
+        "clp/attachments_download.js",
+        "clp/stories_download.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "VK Enhanced",
+    "default_icon": {
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "lyrics/injected.js",
+        "modules/*"
+      ],
+      "matches": [
+        "https://vk.com/*",
+        "https://vk.ru/*",
+        "https://*.vk.com/*",
+        "https://*.vk.ru/*"
+      ]
+    },
+    {
+      "resources": [
+        "styles.css",
+        "styles/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "version_name": "VKE 7.2.42 — transcript search bar + header layering fix"
+}
