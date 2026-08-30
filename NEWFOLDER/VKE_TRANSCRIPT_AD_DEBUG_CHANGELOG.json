@@ -1,0 +1,1 @@
+{"version":"7.2.41","changes":["Robust background VK Video transcript loading: TextTrack warm-up, timed-text resource discovery, direct and isolated-bridge fetch, fetch/XHR capture.","Transcript is loaded in background after player detection with controlled retries.","Search uses raw transcript text without profanity filtering."]}
